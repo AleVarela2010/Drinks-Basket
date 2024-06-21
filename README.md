@@ -32,6 +32,15 @@ diferencia de otras iniciativas, este proyecto utiliza un análisis profundo de 
 Adaptación y Competitividad: 
 Este enfoque permitirá a Drinks Basket no solo mantener su competitividad en el Reino Unido, sino también adaptarse de manera eficiente a nuevos mercados. Esto optimiza las oportunidades de crecimiento y minimiza los riesgos financieros y operativos.
 
+## Implementación del origen de datos
+Para realizar los procesos de ETL se utilizó Python con librerías de Numpy, Pandas, Matplotlib y Seaborn, entre otras.
+Se realizo la limpieza de la base de datos y la creacion de nuevas tablas. Se logro identificar cuales eran las relaciones de las mismas para crear el diagrama Entidad/Relacion y posteriorme el esquema relacional.
+
+![Diagrama Entidad/Relacion](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20entidad%20relacion.png)
+
+![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
+
+
 
 
 
