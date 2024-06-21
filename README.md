@@ -56,7 +56,9 @@ ubicacion en una region con alta demanda. Las variaciones que vemos entre las ci
 
 ## Conexion SQLServer 
 
-Una vez ya realizada la limpieza en python procedimos se creoaron las tablas y objetos para la importacion en SQL y asi poder crear el flujo que importe los datos a la base de datos
+Una vez ya realizada la limpieza en python procedimos se creoaron las tablas y objetos para la importacion en SQL y asi poder crear el flujo que importe los datos a la base de datos.
+
+!SQL Ejemplo](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Tabla%20SQL.jpg)
 
 
 
