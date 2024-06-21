@@ -41,6 +41,9 @@ Se realizo la limpieza de la base de datos y la creacion de nuevas tablas. Se lo
 ![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
 
 
+## Conexion SQLServer 
+
+Una vez ya realizada la limpieza en python procedimos se creoaron las tablas y objetos para la importacion en SQL y asi poder crear el flujo que importe los datos a la base de datos
 
 
 
