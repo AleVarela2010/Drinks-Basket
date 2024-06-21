@@ -1,4 +1,3 @@
-# My Project
 ![Logo de la empresa](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Portada.jpg)
 
 # Drinks-Basket
