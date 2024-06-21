@@ -9,7 +9,7 @@ La empresa enfrenta desafíos en la gestión de inventario de licores, que inclu
 El Reino Unido tiene un mercado competitivo para las bebidas alcohólicas, y una gestión ineficaz del inventario puede llevar a pérdidas significativas de oportunidades de ventas y un aumento en los costos de almacenamiento y obsolescencia de productos. Se busca resolver este problema ya que impacta directamente en la rentabilidad (el exceso de stock genera mayores costos de almacenamiento y riesgo de pérdida de productos), en la capacidad de respuesta del mercado (los stockouts son ventas pérdidas y dañan la reputación de la empresa) y en las decisiones estratégicas (no se puede tomar decisiones estratégicas sobre compras y estrategias de expansión, no se tiene control sobre los best seller y aquellos productos que no rinden). 
 La solución es principalmente mejorar la gestión de inventario pero buscando responder preguntas de demanda, mejorando la estrategia de compra y venta de productos para lograr la expansión de la empresa. 
 
-## Objetivos principal del proyecto
+## Objetivos principales del proyecto
 ### Optimización de la Gestión de Inventario: 
 Utilizar técnicas avanzadas de análisis para profundizar en los datos históricos de compra y venta. El objetivo es identificar patrones de demanda y áreas de ineficiencia que pueden ser mejoradas, optimizando así la gestión del inventario en Drinks Basket.
 
@@ -44,7 +44,13 @@ Se realizo la limpieza de la base de datos y la creacion de nuevas tablas. Se lo
 
 ![Producto mas vendido](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Producto%20mas%20vendido.jpg)
 
+Observamos que tenemos un producto muy popular seguido de otros dos. En este punto es importante analizar que el inventario este en proporcion a la demanda
+de estos productos
+
 ![DIstribucion inventario](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/StorageTop10.jpg)
+
+Con un inventario significativamente mas alto, tenemos una ciudad que podemos sugerir cumpla un rol como un centro de distribucion principal o una
+ubicacion en una region con alta demanda. Las variaciones que vemos entre las ciudades en terminos de inventario puede sugerir diferencia en el mercado.
 
 
 
