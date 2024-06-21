@@ -40,6 +40,13 @@ Se realizo la limpieza de la base de datos y la creacion de nuevas tablas. Se lo
 
 ![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
 
+## Primeros insights
+
+![Producto mas vendido](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Producto%20mas%20vendido.jpg)
+
+![DIstribucion inventario](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/StorageTop10.jpg)
+
+
 
 ## Conexion SQLServer 
 
