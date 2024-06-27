@@ -108,20 +108,11 @@ WHERE rn > 1;
 ALTER TABLE Suppliers
 ADD CONSTRAINT PK_VendorNumber PRIMARY KEY (VendorNumber);
 
-
-
 ALTER TABLE Inventory
 ALTER COLUMN ProductoID INT NOT NULL;
 
 ALTER TABLE Inventory
 ADD CONSTRAINT PK_ProductoID PRIMARY KEY (ProductoID);
-
-
-
-
-
-
-
 
 CREATE TABLE SaleInventory2 (
     IDSales INT,
@@ -145,3 +136,69 @@ FROM Sale s
 JOIN Inventory i ON s.Brand = i.Brand;
 
 Select * FROM SaleInventory2
+
+
+ALTER TABLE InvoicePurchase
+ALTER COLUMN IDPurchases INT
+
+ALTER TABLE InvoicePurchase
+ADD CONSTRAINT FK_InvoicePurchase_Purchases
+FOREIGN KEY (IDPurchases) REFERENCES Purchases(IDPurchases);
+
+ALTER TABLE InvoicePurchase
+ALTER COLUMN VendorNumber INT
+
+ALTER TABLE InvoicePurchase
+ADD CONSTRAINT FK_InvoicePurchase_Suppliers
+FOREIGN KEY (VendorNumber) REFERENCES Suppliers(VendorNumber);
+
+ALTER TABLE SaleDetail
+ALTER COLUMN IDSales INT
+
+ALTER TABLE SaleDetail
+ADD CONSTRAINT FK_SaleDetail_Sale
+FOREIGN KEY (IDSales) REFERENCES Sale(IDSales);
+
+
+ALTER TABLE Purchases
+ALTER COLUMN Brand INT NOT NULL
+
+ALTER TABLE Purchases
+ADD CONSTRAINT FK_Purchases_Inventory2
+FOREIGN KEY (Brand) REFERENCES Inventory(ProductoID);
+
+-- Crear la tabla de fechas
+CREATE TABLE Fecha (
+    Fecha DATE PRIMARY KEY,
+    Año INT,
+    Mes INT,
+    Día INT,
+    DíaDeLaSemana INT,
+    NombreDelDía NVARCHAR(10),
+    NombreDelMes NVARCHAR(10),
+    Trimestre INT,
+    AñoMes NVARCHAR(7)
+);
+
+-- Definir las fechas de inicio y fin
+DECLARE @FechaInicio DATE = '2016-01-01';
+DECLARE @FechaFin DATE = '2016-12-31';
+
+-- Insertar los datos en la tabla de fechas
+INSERT INTO Fecha (Fecha, Año, Mes, Día, DíaDeLaSemana, NombreDelDía, NombreDelMes, Trimestre, AñoMes)
+SELECT 
+    Fecha = DATEADD(DAY, number, @FechaInicio),
+    Año = YEAR(DATEADD(DAY, number, @FechaInicio)),
+    Mes = MONTH(DATEADD(DAY, number, @FechaInicio)),
+    Día = DAY(DATEADD(DAY, number, @FechaInicio)),
+    DíaDeLaSemana = DATEPART(WEEKDAY, DATEADD(DAY, number, @FechaInicio)),
+    NombreDelDía = DATENAME(WEEKDAY, DATEADD(DAY, number, @FechaInicio)),
+    NombreDelMes = DATENAME(MONTH, DATEADD(DAY, number, @FechaInicio)),
+    Trimestre = DATEPART(QUARTER, DATEADD(DAY, number, @FechaInicio)),
+    AñoMes = FORMAT(DATEADD(DAY, number, @FechaInicio), 'yyyy-MM')
+FROM 
+    master..spt_values 
+WHERE 
+    type = 'P' AND 
+    DATEADD(DAY, number, @FechaInicio) <= @FechaFin;
+
