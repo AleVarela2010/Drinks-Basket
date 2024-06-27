@@ -1,8 +1,10 @@
-CREATE DATABASE DrinksBasket1
+--Se crea la base de datos 
+CREATE DATABASE DrinksBasket
 
-USE DrinksBasket1
+-- Me posiciono en la nueva base de datos
+USE DrinksBasket
 
-
+-- Creo las tablas 
 CREATE TABLE "InvoicePurchase"(
     "IDInvoicePurchase" INT NOT NULL,
     "IDPurchases" INT NOT NULL,
@@ -13,12 +15,6 @@ CREATE TABLE "InvoicePurchase"(
     "PODate" DATE NOT NULL
 );
 
-
-CREATE TABLE "InventorySale"(
-    "Brand" NVARCHAR(255) NOT NULL,
-    "IDSales" INT NOT NULL
-);
-
 CREATE TABLE "Inventory"(
     "Brand" NVARCHAR(255) NOT NULL,
     "City" NVARCHAR(255) NOT NULL,
@@ -27,8 +23,9 @@ CREATE TABLE "Inventory"(
     "Size" NVARCHAR(255) NOT NULL,
     "onHand" INT NOT NULL,
     "Price" FLOAT(53) NOT NULL,
+	"InventoryId" INT NOT NULL,
+	"ProductoID" INT NOT NULL
 );
-
 
 CREATE TABLE "Suppliers"(
     "VendorNumber" INT NOT NULL,
@@ -39,28 +36,32 @@ CREATE TABLE "Sale"(
     "IDSales" INT NOT NULL,
     "SalesDate" DATE NOT NULL,
     "Store" INT NOT NULL,
-    "ExciseTax" FLOAT(53) NOT NULL
+    "ExciseTax" FLOAT(53) NOT NULL,
+	"Brand" NVARCHAR(255) NOT NULL
 );
 
 CREATE TABLE "SaleDetail"(
     "DetalilSalesID" VARCHAR(255) NOT NULL,
     "IDSales" INT NOT NULL,
     "Size" VARCHAR(255) NOT NULL,
-    "Sales Quantity" INT NOT NULL,
+    "SalesQuantity" INT NOT NULL,
     "SalesDollars" FLOAT(53) NOT NULL,
-    "SalesPrice" FLOAT(53) NOT NULL
+    "SalesPrice" FLOAT(53) NOT NULL,
+	"Brand" VARCHAR(255) NOT NULL,
+	"Description" VARCHAR(255) NOT NULL,
 );
 
 CREATE TABLE "Purchases"(
     "IDPurchases" INT NOT NULL,
-    "Brand" NVARCHAR(255) NOT NULL,
+    "InventoryId" NVARCHAR(255) NOT NULL,
     "PONumber" INT NOT NULL,
     "PurchasePrice" FLOAT(53) NOT NULL,
     "PODate" DATE NOT NULL,
     "ReceivingDate" DATE NOT NULL,
     "Quantity" INT NOT NULL,
     "Dollars" FLOAT(53) NOT NULL,
-    "Classification" INT NOT NULL
+    "Classification" INT NOT NULL,
+	"Brand" INT NOT NULL
 );
 
 ALTER TABLE Purchases
@@ -90,6 +91,8 @@ ADD CONSTRAINT PK_IDInvoicePurchases PRIMARY KEY (IDInvoicePurchases);
 ALTER TABLE Suppliers
 ALTER COLUMN VendorNumber INT NOT NULL;
 
+--Se eliminan los duplicados de Suppliers
+
 SELECT *
 FROM Suppliers
 WHERE VendorNumber IN (SELECT VendorNumber FROM Suppliers GROUP BY VendorNumber HAVING COUNT(*) > 1);
@@ -105,59 +108,40 @@ WHERE rn > 1;
 ALTER TABLE Suppliers
 ADD CONSTRAINT PK_VendorNumber PRIMARY KEY (VendorNumber);
 
+
+
 ALTER TABLE Inventory
-ADD InventoryID INT IDENTITY(1,1) NOT NULL;
+ALTER COLUMN ProductoID INT NOT NULL;
 
 ALTER TABLE Inventory
-ADD CONSTRAINT PK_Inventory PRIMARY KEY (InventoryID);
+ADD CONSTRAINT PK_ProductoID PRIMARY KEY (ProductoID);
 
 
-ALTER TABLE SaleDetail
-ALTER COLUMN IDSales INT NOT NULL;
-
-ALTER TABLE SaleDetail
-ADD CONSTRAINT FK_SaleDetail_Sale
-FOREIGN KEY (IDSales) REFERENCES Sale(IDSales);
-
-ALTER TABLE InventorySale
-ALTER COLUMN IDSales INT NOT NULL;
-
-ALTER TABLE InventorySale
-ADD CONSTRAINT FK_InventorySale_Sale_
-FOREIGN KEY (IDSales) REFERENCES Sale(IDSales);
-
-EXEC sp_rename 'InventorySale.Brand', 'InventoryID', 'COLUMN';
 
 
-ALTER TABLE InventorySale
-ALTER COLUMN InventoryID INT NOT NULL;
-
-ALTER TABLE InventorySale
-ADD CONSTRAINT FK_InventorySale_Inventory_
-FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID);
-
-ALTER TABLE Purchases ADD InventoryID INT;
 
 
-UPDATE Purchases
-SET InventoryID = inv.InventoryID
-FROM Purchases pur
-JOIN Inventory inv ON pur.InventoryID = inv.InventoryID;
 
-ALTER TABLE Purchases
-ADD CONSTRAINT FK_Purchases_Inventory_
-FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID);
 
-ALTER TABLE InvoicePurchase
-ALTER COLUMN IDPurchases INT NOT NULL;
+CREATE TABLE SaleInventory2 (
+    IDSales INT,
+    ProductoID INT,
+    PRIMARY KEY (IDSales, ProductoID),
+    FOREIGN KEY (IDSales) REFERENCES Sale(IDSales),
+    FOREIGN KEY (ProductoID) REFERENCES Inventory(ProductoID)
+);
 
-ALTER TABLE InvoicePurchase
-ADD CONSTRAINT FK_InvoicePurchase_Purchases
-FOREIGN KEY (IDPurchases) REFERENCES Purchases(IDPurchases);
+Select * FROM SaleInventory2
 
-ALTER TABLE InvoicePurchase
-ALTER COLUMN VendorNumber INT NOT NULL;
+-- Verifica las claves foráneas de la tabla SaleInventory2
+EXEC sp_fkeys @pktable_name = 'Sale', @pktable_owner = 'dbo', @fktable_name = 'SaleInventory2';
 
-ALTER TABLE InvoicePurchase
-ADD CONSTRAINT FK_InvoicePurchase_Suppliers
-FOREIGN KEY (VendorNumber) REFERENCES Suppliers(VendorNumber);
+EXEC sp_fkeys @pktable_name = 'Inventory', @pktable_owner = 'dbo', @fktable_name = 'SaleInventory2';
+
+
+INSERT INTO SaleInventory2(IDSales, ProductoID)
+SELECT s.IDSales, i.ProductoID
+FROM Sale s
+JOIN Inventory i ON s.Brand = i.Brand;
+
+Select * FROM SaleInventory2
