@@ -56,7 +56,7 @@ Se hizo la limpieza de la base de datos y asi tambien la creacion de nuevas tabl
 
 Se llego al siguiente diagrama de Entidad/Relacion:
 
-![Diagrama Entidad/Relacion](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20entidad%20relacion.png)
+![Diagrama Entidad/Relacion](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20entidad%20relacion1.png)
 
 ![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
 
