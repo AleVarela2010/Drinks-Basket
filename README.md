@@ -58,7 +58,7 @@ Se llego al siguiente diagrama de Entidad/Relacion:
 
 ![Diagrama Entidad/Relacion](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20entidad%20relacion1.png)
 
-![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
+![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20relacional.PNG)
 
 Toda la limpieza fue realizada en VSC con Python (pandas, numpy, SQL Alchemy) antes de cargar los datos en la nueva Base de datosen SQL.
 
