@@ -46,10 +46,13 @@ Se revisaron las tablas para familiarizarse con los datos y asi dar paso a la cr
 Para realizar los procesos de ETL se utilizó Python con librerías de Numpy, Pandas, Matplotlib y Seaborn, entre otras.
 Se hizo la limpieza de la base de datos y asi tambien la creacion de nuevas tablas utiles para el analisis posterior:
 
--
--
--
--
+- Suppliers
+- Sales
+- SalesDetails
+- Inventory
+- Purchases
+- InvoicePurchases
+- SaleInventory
 
 Se llego al siguiente diagrama de Entidad/Relacion:
 
