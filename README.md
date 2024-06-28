@@ -33,15 +33,35 @@ Adaptación y Competitividad:
 Este enfoque permitirá a Drinks Basket no solo mantener su competitividad en el Reino Unido, sino también adaptarse de manera eficiente a nuevos mercados. Esto optimiza las oportunidades de crecimiento y minimiza los riesgos financieros y operativos.
 
 ## Implementación del origen de datos
+Se comenzo con la recoleccion de los datos, [DataBase](https://www.kaggle.com/datasets/bhanupratapbiswas/inventory-analysis-case-study/data) esta base cuenta con las siguientes tablas todas relacionada al inventario de una licoreria:
+
+- 2017PurchasePricesDec.csv (Tabla de precios de mercaderia)
+- BegInvFINAL12312016.csv (Inventario al comienzo del ano)
+- EndInvFINAL12312016.csv (Inventario al finalizar el ano)
+- InvoicePurchases12312016.csv (Facturas de compras)
+- PurchasesFINAL12312016.csv (Tabla de compras, es decir reposicion de mercaderia)
+- SalesFINAL12312016.csv (Tabla con informacion de las ventas)
+
+Se revisaron las tablas para familiarizarse con los datos y asi dar paso a la creacion del DER. Una vez hecha las relaciones y vimos que datos iban a ser necesarios se paso a la limpieza de las tablas.
 Para realizar los procesos de ETL se utilizó Python con librerías de Numpy, Pandas, Matplotlib y Seaborn, entre otras.
-Se realizo la limpieza de la base de datos y la creacion de nuevas tablas. Se logro identificar cuales eran las relaciones de las mismas para crear el diagrama Entidad/Relacion y posteriorme el esquema relacional.
+Se hizo la limpieza de la base de datos y asi tambien la creacion de nuevas tablas utiles para el analisis posterior:
+
+-
+-
+-
+-
+
+Se llego al siguiente diagrama de Entidad/Relacion:
 
 ![Diagrama Entidad/Relacion](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Diagrama%20entidad%20relacion.png)
 
 ![Diagrama Relacional](https://github.com/AleVarela2010/Drinks-Basket/raw/main/images/DiagramaRelacional.jpeg)
 
-## Primeros insights
+Toda la limpieza fue realizada en VSC con Python (pandas, numpy, SQL Alchemy) antes de cargar los datos en la nueva Base de datosen SQL.
 
+## Primeros insights / Analisis Exploratorio de Datos (EDA)
+
+ 
 ![Producto mas vendido](https://github.com/AleVarela2010/Drinks-Basket/blob/main/images/Producto%20mas%20vendido.jpg)
 
 Observamos que tenemos un producto muy popular seguido de otros dos. En este punto es importante analizar que el inventario este en proporcion a la demanda
