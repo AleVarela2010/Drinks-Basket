@@ -53,6 +53,7 @@ Se hizo la limpieza de la base de datos y asi tambien la creacion de nuevas tabl
 - Purchases
 - InvoicePurchases
 - SaleInventory
+- Date
 
 Se llego al siguiente diagrama de Entidad/Relacion:
 
